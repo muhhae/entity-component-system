@@ -18,10 +18,14 @@ namespace nty
         private:
             struct p_Component
             {
-                p_Component(const std::type_info* type, int index) : m_index(index), m_type(type->name()) {}
-                const int m_index;
-                const std::string m_type;
-                template <typename T> T& get(){ return getList<T>()[m_index]; }
+                public:
+                    p_Component(const std::type_info* type, int index) : m_index(index), m_type(type->name()) {}
+                    const int m_index;
+                    const std::string m_type;
+                    template <typename T> T& get() { return getList<T>()[m_index]; }
+                private:
+                    Entity* m_entity;
+
             };
 
             std::vector<p_Component> m_components;
@@ -44,10 +48,11 @@ namespace nty
             struct Component
             {
                 public:
-                    Component(p_Component p_c) : p_comp(p_c) {}
-                    T& get() { return p_comp.get<T>(); }
+                    Component(Entity* parent) : m_parent(parent) {}
+                    T& get() { return m_parent->get<T>(); }
+                    template <typename U> U& getOther() { return m_parent->get<U>(); }
                 private:
-                    p_Component p_comp;
+                    Entity* m_parent;
             };
 
             template <typename T> T& get()
@@ -58,11 +63,10 @@ namespace nty
 
             template <typename T> Component<T> getComponent()
             {
-                return Component<T>(getComp<T>());
+                return Component<T>(this);
             }
     };
 
     template <typename T>
     using Component = Entity::Component<T>;
-
 }
