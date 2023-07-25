@@ -4,11 +4,9 @@
 workspace "CPPTemplate"
     configurations { "Debug", "Release" }
 
-SRCDIR = "src" --Source Code Directory
 BUILDDIR = "bin" --Build Directory
 OBJDIR = "obj" --Obj Directory
 RESFILE = "resource" --Resource Directory
-
 
 project "App"
     kind "ConsoleApp" --App Type
@@ -16,9 +14,12 @@ project "App"
 
     cppdialect "C++latest"
     links {} --link library
+    includedirs {"include"}
 
     targetdir "%{BUILDDIR}/%{cfg.buildcfg}" 
     objdir "%{OBJDIR}/%{cfg.buildcfg}"
+
+    SRCDIR = "Example" --Source Code Directory
 
     files {
         "%{SRCDIR}/**.h",

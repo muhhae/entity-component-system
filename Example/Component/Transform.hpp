@@ -17,7 +17,7 @@ class ClassColor
     public :
         void print()
         {
-            std::cout << "Color : " << m_color.name << std::endl;
+            std::cout << m_color.name << std::endl;
         }
         void setColor(Color color) 
         {
