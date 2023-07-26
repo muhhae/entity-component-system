@@ -31,7 +31,8 @@ namespace nty
             T& get() 
             {
                 if (!exist<T>()) throw std::runtime_error("[NTY_ERROR][Trying to access a component that doesn't exist]");
-                return getComponent<T>().get();
+                p_Component comp = getComp<T>();
+                return comp.get<T>();
             }
 
             template <typename T>

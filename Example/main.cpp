@@ -53,7 +53,7 @@ void checkEntity()
 
     std::cout << "Trying to get a component that doesn't exist..." << std::endl;
 
-    //this is fine but has no value
+    //this is fine, but gonna crash the program if you try to access the component
     nty::Component<ComponentThatDoesntExist> notExist = gameObject.getComponent<ComponentThatDoesntExist>(); 
     //crash the program
     // gameObject.get<ComponentThatDoesntExist>();
