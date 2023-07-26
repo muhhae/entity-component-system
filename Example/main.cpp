@@ -12,7 +12,7 @@ void checkEntity()
 {
     nty::Entity gameObject;
     //Add component to the entity
-    gameObject.add<Transform>();
+    gameObject.add<Transform>({9, 8, 7});
     gameObject.add<Color>();
     gameObject.add<ClassColor>();
 

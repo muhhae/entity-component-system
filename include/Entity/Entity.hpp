@@ -36,9 +36,9 @@ namespace nty
             }
 
             template <typename T>
-            T& add()
+            T& add(T t = T())
             {
-                if (!exist<T>()) createComp<T>();
+                if (!exist<T>()) createComp<T>(t);
                 p_Component comp = getComp<T>();
                 return comp.get<T>();
             }
@@ -78,9 +78,9 @@ namespace nty
                 return p_Component(&typeid(T), -1);
             }
 
-            template <typename T> void createComp()
+            template <typename T> void createComp(T t = T())
             {
-                getList<T>().push_back(T());
+                getList<T>().push_back(t);
                 m_components.push_back(p_Component(&typeid(T), getList<T>().size() - 1));
             }
 
